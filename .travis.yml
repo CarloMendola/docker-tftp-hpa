@@ -19,3 +19,5 @@ services:
 language: bash
 script:
 - 'docker build --rm -t tftp-hpa . && docker images | egrep "tftp-hpa\b"'
+- 'source .test.sh'
+
