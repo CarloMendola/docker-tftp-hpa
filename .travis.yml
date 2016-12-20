@@ -1,0 +1,21 @@
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    rooms:
+      secure: PD1bZ83MdP4Ss8PTKzel/wHU9mZFWdTBmt5GUpsYz3uTrb/fLbReq4/dsnBSbCWqUeiR+SXdlDCXF3Nm6gDmaDDLwot/R/TatecN4T1VQEL7dBjYU8ZykBgAD8NwQLzS7M6X/sJF8L1dSg+Os+ug9uH3vrLuqMWKjGPLrti+YjXObgIlO/d+dE+rOpuf02i29C610kls+W/SFmG9bfTVJFOb4/r7tTT7+qV0v8O7GWna+hSjoI5aKKyvKrPsvsiNznRFWu/+2LQpdK0lE4P3I2ou8NN3xvovymheezk8RZUJ6rfv21e5os9mmcvs42Uz/xa/Mx+6t4YKG938lv07lvehY2y71OKye4QSgezJsFsebUPLj3k+4K6zwKMSWNzLjHW7+l8yr6tnN7HlEd9V2IrEna2/GTftS5/jAYBJbsDLhH4EOPNb6PWoU2epxFqz/kQnRqwWS32BhxTiTJB+njoFggW3NOsMkZ2VgSFlHB2Rqct+Uvz90my5uCjQmZWei0N5TGS+triI4SjmCBQSuE+S1d10tiEqITdNgoIv1mv/F19LvPwKz2LZXjwYQdm/RSoiR0YZxrpTPnrWD+4YLPX0a3HKHPEQxgYZnGbE+MsfemHBr544jAm0F6Z98W6Q6GSPZaoAefKnjKgAazXXMl7sKf3B5UgwvoUFcqabyxE=
+    template:
+    - '%{commit_subject}'
+    - build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) @%{branch}
+    - by %{author} %{result} in %{duration}
+    on_success: always
+    on_failure: always
+os: linux
+dist: trusty
+sudo: required
+services:
+- docker
+language: bash
+script:
+- source .tests/build.sh"
