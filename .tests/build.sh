@@ -1,10 +1,13 @@
 #!/bin/bash
 
-. .tests/functions.sh
+basic() {
+  echo "[RUN] $@"
+  "$@"
+}
 
 echo
 echo "===> Build a tiny tftp server image."
-run_statement docker build --rm -t tftp-hpa .
+basic docker build --rm -t tftp-hpa .
 
 echo
 echo "===> Show image sizes."
