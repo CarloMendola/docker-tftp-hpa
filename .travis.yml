@@ -18,4 +18,4 @@ services:
 - docker
 language: bash
 script:
-- docker build --rm -t tftp-hpa .
+- 'docker build --rm -t tftp-hpa . && docker images | egrep "tftp-hpa\b"'
