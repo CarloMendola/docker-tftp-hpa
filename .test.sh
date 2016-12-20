@@ -14,7 +14,7 @@ run_cmd docker run --rm -t tftp-hpa -V
 
 echo
 echo "===> Start server."
-run_cmd docker run -d -p 69:69/udp -v .dummy-menu:/tftpboot/site:ro --name tftpd tftp-hpa
+run_cmd docker run -d -p 69:69/udp -v $(pwd)/fixtures:/tftpboot/site:ro --name tftpd tftp-hpa
 ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' tftpd | tr -d '\r')
 [ "x" = "x${ip}" ] && err "Is tftpd container running?"
 echo "Server is up at $ip"
