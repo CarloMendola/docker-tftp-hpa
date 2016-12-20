@@ -18,4 +18,4 @@ services:
 - docker
 language: bash
 script:
-- source .tests/build.sh"
+- docker build --rm -t tftp-hpa .
