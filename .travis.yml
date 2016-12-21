@@ -19,7 +19,7 @@ services:
 addons:
   apt:
     packages:
-     - tftp-hpa
+     - tftp
 language: bash
 script:
 - 'docker build --rm -t tftp-hpa . && docker images | egrep "tftp-hpa\b"'
