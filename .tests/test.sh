@@ -19,6 +19,8 @@ ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' tftpd | tr -d '\r'
 [ "x" = "x${ip}" ] && err "Is tftpd container running?"
 echo "Server is up at $ip"
 
+cd /tmp
+
 echo
 echo "===> Test that we can download files via tftp client."
 echo "---> /site/menu (fully-qualified, forward slashes)"
