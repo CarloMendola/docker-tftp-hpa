@@ -17,4 +17,4 @@ EXPOSE 69/udp
 RUN adduser -D tftp
 
 ENTRYPOINT ["in.tftpd"]
-CMD ["-L", "--verbose", "-m", "/tftpboot/mapfile", "-u", "tftp", "--secure", "/tftpboot"]
+CMD ["-L", "--verbose", "-m", "/tftpboot/mapfile", "-u", "tftp", "--secure", "--ipv4", /tftpboot"]
