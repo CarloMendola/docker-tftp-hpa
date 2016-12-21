@@ -15,11 +15,11 @@ run_cmd docker run --rm -t tftp-hpa -V
 
 echo
 echo "===> Start server."
-run_cmd docker run -d -v $(pwd)/.tests/fixtures:/tftpboot/site:ro --name tftpd tftp-hpa
+run_cmd docker run -d -v $(pwd)/.tests/fixtures:/tftpboot/site:ro --name tftp tftp-hpa
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' tftpd | tr -d '\r')
+ip=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' tftp | tr -d '\r')
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-[ "x" = "x${ip}" ] && err "Is tftpd container running?"
+[ "x" = "x${ip}" ] && err "Is tftp container running?"
 echo "Server is up at $ip"
 
 cd /tmp
