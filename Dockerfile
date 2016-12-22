@@ -1,12 +1,7 @@
 FROM armhf/alpine:latest
 
-# Add safe defaults that can be overriden easily.
-COPY pxelinux.cfg /tftpboot/
+COPY tftpboot /tftpboot/
 
-# Support clients that use backslash instead of forward slash.
-COPY mapfile /tftpboot/
-
-# Do not track further change to /tftpboot.
 VOLUME /tftpboot
 
 # http://forum.alpinelinux.org/apk/main/x86_64/tftp-hpa
