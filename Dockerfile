@@ -15,6 +15,7 @@ RUN apk add --no-cache tftp-hpa
 EXPOSE 69/udp
 
 RUN adduser -D tftp
+RUN chown -R tftp:tftp /tftpboot
 
 ENTRYPOINT ["in.tftpd"]
 CMD ["-L", "--verbose", "-m", "/tftpboot/mapfile", "-u", "tftp", "--secure", "--ipv4", "/tftpboot"]
