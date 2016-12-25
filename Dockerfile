@@ -1,5 +1,7 @@
 FROM alpine:3.3
 
+RUN mkdir -p /tftpboot
+
 # Support clients that use backslash instead of forward slash.
 COPY mapfile /tftpboot/
 
