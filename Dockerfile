@@ -4,6 +4,7 @@ RUN mkdir -p /tftpboot
 
 # Support clients that use backslash instead of forward slash.
 COPY mapfile /tftpboot/
+RUN find /tftpboot -type f -exec chmod 0444 {} + 
 
 # Do not track further change to /tftpboot.
 VOLUME /tftpboot
