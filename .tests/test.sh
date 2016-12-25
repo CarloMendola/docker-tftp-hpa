@@ -39,12 +39,13 @@ echo
 echo "---> \site\menu (fully-qualified, backslashes)"
 run_cmd tftp $ip -c get \\site\\menu
 ls /tmp/
+cat "/tmp/\\site\\menu"
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-test -s /tmp/menu
+test -s /tmp/\\site\\menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-grep 'Sample pxe menu' /tmp/menu
+grep 'Sample pxe menu' /tmp/\\site\\menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-rm /tmp/menu
+rm /tmp/\\site\\menu
 echo
 
 echo "---> site/menu (not fully-qualified)"
