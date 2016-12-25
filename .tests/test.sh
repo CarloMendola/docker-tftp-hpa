@@ -38,8 +38,6 @@ echo
 
 echo "---> \site\menu (fully-qualified, backslashes)"
 run_cmd tftp $ip -c get \\site\\menu
-ls /tmp/
-cat "/tmp/\\site\\menu"
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
 test -s /tmp/\\site\\menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
