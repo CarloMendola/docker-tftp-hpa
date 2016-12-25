@@ -33,7 +33,9 @@ test -s /tmp/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
 grep 'Sample pxe menu' /tmp/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
+rm /tmp/menu
 echo
+
 echo "---> \site\menu (fully-qualified, backslashes)"
 run_cmd tftp $ip -c get \\site\\menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
@@ -41,19 +43,21 @@ test -s /tmp/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
 grep 'Sample pxe menu' /tmp/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
+rm /tmp/menu
 echo
-echo "---> pxelinux.0 (not fully-qualified)"
-run_cmd tftp $ip -c get pxelinux.0
+
+echo "---> site/menu (not fully-qualified)"
+run_cmd tftp $ip -c get site/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-test -s /tmp/pxelinux.0
+test -s /tmp/menu
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
+rm /tmp/menu
 echo
-echo "---> /pxelinux.cfg/default"
-run_cmd tftp $ip -c get /pxelinux.cfg/default
+
+echo "---> site/MENU (should be downcased by map file)"
+run_cmd tftp $ip -c get site/MENU
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
-test -s /tmp/default
+test -s /tmp/MENU
 [ "$?" -eq "0" ] || return $EXIT_FAILURE
+rm /tmp/menu
 echo
-echo "---> pxelinux.cfg/F1.msg (should be downcased by map file)"
-run_cmd tftp $ip -c get /pxelinux.cfg/F1.msg
-test -s /tmp/F1.msg
