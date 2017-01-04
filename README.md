@@ -20,7 +20,7 @@ The runtime image is quite small (roughly 9 MB) since it is based on
 ## dockerfile
 
 ```yaml
-FROM alpine:3.3
+FROM armhf/alpine:latest
 
 RUN mkdir -p /tftpboot
 
