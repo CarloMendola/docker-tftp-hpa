@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/ckaserer/docker-tftp-hpa.svg?branch=master)](https://travis-ci.org/ckaserer/docker-tftp-hpa)
-
-**Info:** ARM systems are supported as well. Take a look at the arm branch of the repository.
+# docker-tftp (ARM)
 
 **Acknowledment:** This repository is based on [](https://github.com/jumanjihouse/docker-tftp-hpa) </br>
 Thanks a lot jumanjihouse!
@@ -22,7 +20,7 @@ The runtime image is quite small (roughly 9 MB) since it is based on
 ## dockerfile
 
 ```yaml
-FROM alpine:3.3
+FROM armhf/alpine:latest
 
 RUN mkdir -p /tftpboot
 
