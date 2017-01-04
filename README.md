@@ -5,6 +5,40 @@ Thanks a lot jumanjihouse!
 
 # docker-tftp
 
-The runtime image is quite small since it is based on Alpine Linux.
+## Overview
 
-The goal is to provide a compromise between a single, monolithic tftpd image that contains all the things and a flexible tftpd image that contains just enough to combine with custom-built data containers or volumes an organization needs to bootstrap their infrastructure.
+The image contains:
+
+* H. Peter Anvin's [tftp server](https://git.kernel.org/cgit/network/tftp/tftp-hpa.git/)
+* [map file](src/mapfile) to rewrite certain request paths
+
+The runtime image is quite small (roughly 9 MB) since it is based on
+[Alpine Linux](https://www.alpinelinux.org/).
+
+---
+
+## dockerfile
+
+```yaml
+FROM alpine:3.3
+
+RUN mkdir -p /tftpboot
+
+# Support clients that use backslash instead of forward slash.
+COPY mapfile /tftpboot/
+RUN find /tftpboot -type f -exec chmod 0444 {} + 
+
+# Do not track further change to /tftpboot.
+VOLUME /tftpboot
+
+# http://forum.alpinelinux.org/apk/main/x86_64/tftp-hpa
+RUN apk add --no-cache tftp-hpa
+
+EXPOSE 69/udp
+
+RUN adduser -D tftp
+RUN chown -R tftp:tftp /tftpboot
+
+ENTRYPOINT ["in.tftpd"]
+CMD ["-L", "--verbose", "-m", "/tftpboot/mapfile", "-u", "tftp", "--secure", "--ipv4", "/tftpboot"]
+```
